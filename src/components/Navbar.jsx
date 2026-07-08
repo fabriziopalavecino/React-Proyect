@@ -10,7 +10,7 @@ function NavBar() {
   const [mostrarCategorias, setMostrarCategorias] = useState(false);
   const navigate = useNavigate();
   return (
-    <div className="p-8 flex justify-between items-center border-b-2 bg-black opacity-90 text-white">
+    <div className="relative p-8 flex justify-between items-center border-b-2 bg-black opacity-90 text-white z-50">
 
       <Link
         to="/"
@@ -19,7 +19,8 @@ function NavBar() {
         AuraTech
       </Link>
 
-      <div className="flex items-center gap-5 rounded-lg bg-gray-800 p-2">
+      <div className="flex items-center gap-5 rounded-lg bg-gray-800 p-2"
+      onMouseLeave={() => setMostrarCategorias(false)}>
 
         {/* Botón menú */}
         <button
