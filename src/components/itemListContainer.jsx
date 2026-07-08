@@ -1,47 +1,23 @@
-import { useState, useEffect } from 'react'
 import ItemList from './itemList'
-
-const products = [
-  {
-    id: 1,
-    name: 'Producto 1',
-    description: 'Descripción del producto 1',
-    price: 19.99,
-  },
-  {
-    id: 2,
-    name: 'Producto 2',
-    description: 'Descripción del producto 2',
-    price: 29.99,
-  },
-  {
-    id: 3,
-    name: 'Producto 3',
-    description: 'Descripción del producto 3',
-    price: 39.99,
-  },
-]; // Simulación de productos
+import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 
-function ItemListContainer () {
-  const [items, setItems] = useState([])
+function ItemListContainer() {
+  const [items, setItems] = useState([]);
+  const { categoryName } = useParams();
 
-  useEffect (() => {
-    const getProducts = () => new Promise((res, rej) => {
-      if (products.length > 0) {
-        setTimeout(() => {
-          res(products)
-        }, 1000)
-      } else {
-        rej({Error: 'No se encontraron productos'})
-      }
-    })
+  
+  useEffect(() => {
+    const url_base = 'https://dummyjson.com/products';
+    const url_categorias = `${url_base}/category/${categoryName}`;
 
-    getProducts()
-      .then(res => setItems(res))
-      .catch(err => console.log(err))
+    fetch(categoryName ? url_categorias : url_base)
+      .then(res => res.json())
+      .then(data => setItems(data.products))
+  }, [categoryName]);
 
-  }, [])
+  
 
   return (
     <ItemList items={items} />

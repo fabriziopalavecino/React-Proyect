@@ -1,14 +1,7 @@
-import NavBar from "./components/Navbar"
-import ItemListContainer from "./components/itemListContainer"
-import './index.css'
+import AppRouter from './router/AppRouter'
 
-function App() { 
-  return (
-    <>
-      <NavBar />
-      <ItemListContainer />
-    </>
-  )
-}
+function App () { 
+  return <AppRouter />
+} 
 
 export default App
