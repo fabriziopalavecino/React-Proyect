@@ -1,0 +1,65 @@
+import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext.js";
+
+function Counter({ item }) {
+    const [count, setCount] = useState(0);
+    const { addToCart } = useContext(CartContext);
+
+    useEffect(() => {
+        console.log(`Cantidad seleccionada: ${count}`);
+    }, [count]);
+
+    const sumar = () => {
+        setCount(count + 1);
+    };
+
+    const restar = () => {
+        if (count > 0) {
+            setCount(count - 1);
+            
+        }
+    };
+
+    const handleAddToCart = () => {
+        addToCart(item, count);
+         
+    }
+
+    return (
+        <div className="flex flex-col gap-4 mt-4">
+
+            <div className="flex items-center gap-4">
+
+                <button
+                    onClick={restar}
+                    className={`bg-red-600 text-white px-4 py-2 rounded ${count === 0 ? "opacity-50 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"}`}
+                >
+                    -
+                </button>
+
+                <span className="text-xl font-bold">
+                    {count}
+                </span>
+
+                <button
+                    onClick={sumar}
+                    className="bg-green-600 text-white px-4 py-2 rounded"
+                >
+                    +
+                </button>
+
+            </div>
+
+            <button
+                onClick={() => handleAddToCart()}
+                className="bg-blue-700 text-white px-4 py-2 rounded"
+            >
+                Agregar al carrito
+            </button>
+
+        </div>
+    );
+}
+
+export default Counter;

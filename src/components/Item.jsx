@@ -10,7 +10,6 @@ function Item ({ item }) {
             <button className='bg-white text-black px-4 py-2 rounded' onClick={() => navigate(`/product/${item.id}`)}>
                 Ver mas...
             </button>
-            <button className='bg-blue-700 text-white px-4 py-2 rounded width-min'>Agregar al carrito</button>
         </div>
     )
 }
