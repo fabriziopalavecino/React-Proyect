@@ -1,18 +1,25 @@
 import ItemListContainer from './itemListContainer'
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import menuIcon from "../assets/botonCategorias.webp"
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext.js";
+import { getCategories } from "../firebase/db";
 
 
 function NavBar() {
   const [mostrarCategorias, setMostrarCategorias] = useState(false);
   const navigate = useNavigate();
-  const { cart } = useContext(CartContext);
-  const { getProductsQuantity } = useContext(CartContext);
+  const { cart, getProductsQuantity } = useContext(CartContext);
+  const [categories, setCategories] = useState([]);
 
+  useEffect(() => {
+    getCategories().then((data) => {
+      setCategories(data);
+    });
+  }, []);
+  
   return (
     <div className="relative p-8 flex justify-between items-center border-b-2 bg-black opacity-90 text-white z-50">
 
@@ -23,44 +30,30 @@ function NavBar() {
         AuraTech
       </Link>
 
-      <div className="flex items-center gap-5 rounded-lg bg-gray-800 p-2">
+      <div className="flex items-center gap-5 rounded-lg bg-gray-800 p-2"
+        onMouseEnter={() => setMostrarCategorias(true)}
+        onMouseLeave={() => setMostrarCategorias(false)}>
 
         <button className="bg-gray-800 p-2 rounded-lg">
           <img
             src={menuIcon}
             alt="Menú"
-            className="w-8 h-8 rounded"
-            onMouseEnter={() => setMostrarCategorias(true)}
-            onMouseLeave={() => setMostrarCategorias(false)}
-          />
+            className="w-8 h-8 rounded" />
         </button>
 
 
         {mostrarCategorias && (
           <ul className="absolute top-20 right-20 bg-gray-800 rounded-lg p-4 flex flex-col gap-2">
-            <li>
-              <Link to="/categorias/smartphones">Smartphones</Link>
-            </li>
-
-            <li>
-              <Link to="/categorias/beauty">Belleza</Link>
-            </li>
-
-            <li>
-              <Link to="/categorias/furniture">Muebles</Link>
-            </li>
-
-
-            <li>
-              <Link to="/categorias/fragrances">Fragancias</Link>
-            </li>
-
-            <li>
-              <Link to="/categorias/laptops">Laptops</Link>
-            </li>
+            {categories.map((category) => (
+              <li key={category.id}>
+                <Link to={`/categorias/${category.name}`}>
+                  {category.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         )}
-
+        
         {/* Carrito */}
         <button
           className="relative bg-blue-700 px-3 py-1 rounded-lg"
