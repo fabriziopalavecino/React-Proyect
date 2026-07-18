@@ -3,6 +3,7 @@ import { CartContext } from "../context/CartContext.js";
 import { FiPlusSquare } from "react-icons/fi";
 import { FiXSquare, FiMinusSquare, FiTrash2 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import Checkout from "../components/Checkout.jsx"
 
 
 function CartContainer() {
@@ -22,9 +23,9 @@ function CartContainer() {
 
                 {cart.map(prod => (
                     <li className="list-row pb-4 bg-gray-100 rounded-lg border border-gray-300 p-2 flex items-center gap-4 m-3" key={prod.id}>
-                        <div><img className="size-10 rounded-box" src={prod.thumbnail} /></div>
+                        <div><img className="size-10 rounded-box" src={prod.image} /></div>
                         <div>
-                            <div>{prod.title}</div>
+                            <div>{prod.name}</div>
                             <div className="text-xs uppercase font-semibold opacity-60">Cantidad:{prod.count}</div>
                         </div>
                         <div className="ml-auto flex gap-2">
@@ -48,7 +49,7 @@ function CartContainer() {
             </ul>
             <div className="flex justify-center items-center bg-gray-100 rounded-lg border border-gray-300 p-4 m-4">
                 <button className="btn btn-primary"
-                    onClick={() => navigate('/checkout')}
+                    onClick={() => navigate('/Checkout')}
                 >
                     Ir a pagar
                 </button>
