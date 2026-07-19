@@ -3,9 +3,11 @@ import { CartContext } from "../context/CartContext"
 import { useContext } from "react";
 import { createOrder } from "../firebase/db";
 import { serverTimestamp } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 function Checkout() {
-    const { cart } = useContext(CartContext)
+    const { cart, clearCart } = useContext(CartContext)
+    const navigate = useNavigate()
 
     const handleCreateOrder = (e) => {
         e.preventDefault()
@@ -14,8 +16,9 @@ function Checkout() {
         const name = form.name.value
         const phone = form.phone.value
         const email = form.email.value
-        const address = form.address.value 
+        const address = form.address.value
         const streetNumber = form.streetNumber.value
+
 
         createOrder({
             user: { name, phone, email, address, streetNumber },
@@ -23,8 +26,23 @@ function Checkout() {
             time: serverTimestamp(),
         })
 
+        clearCart()
+
+        navigate("/")
+
     }
 
+    if (cart.length === 0) {
+        return (
+            <div className="flex flex-col rounded-box shadow-md m-4 border border-gray-300 p-4 gap-10">
+                <h2>No haz seleccionado ningun producto</h2>
+                <button className="flex justify-center border max-w-120 rounded bg-red"
+                    onClick={() => navigate("/")}>
+                    Ver productos
+                </button>
+            </div>
+        )
+    }
     return (
         <div className="flex justify-center mt-10">
             <form

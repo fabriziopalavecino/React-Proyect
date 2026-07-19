@@ -2,16 +2,12 @@ import ItemListContainer from './itemListContainer'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import menuIcon from "../assets/botonCategorias.webp"
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext.js";
 import { getCategories } from "../firebase/db";
+import CartWidget from './CartWidget';
 
 
 function NavBar() {
   const [mostrarCategorias, setMostrarCategorias] = useState(false);
-  const navigate = useNavigate();
-  const { cart, getProductsQuantity } = useContext(CartContext);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -55,23 +51,7 @@ function NavBar() {
         )}
         
         {/* Carrito */}
-        <button
-          className="relative bg-blue-700 px-3 py-1 rounded-lg"
-          onClick={() => navigate("/cart")}
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png"
-            alt="Cart"
-            className="w-5 h-5"
-          />
-
-          {getProductsQuantity() > 0 && (
-            <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-              {getProductsQuantity()}
-            </span>
-          )}
-
-        </button>
+        <CartWidget />
       </div>
     </div>
   );

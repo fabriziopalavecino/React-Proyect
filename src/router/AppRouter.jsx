@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ItemDetailContainer from "../components/ItemDetailContainer";
 import CartContainer from "../components/CartContainer";
 import Checkout from "../components/Checkout";
+import { Toaster } from "react-hot-toast";
 
 function AppRouter() {
 
@@ -17,6 +18,7 @@ function AppRouter() {
                 <Route path="/categorias/:categoryName" element={<ItemListContainer />} />
                 <Route path="/product/:id" element={<ItemDetailContainer />} />
             </Routes>
+            <Toaster />
         </BrowserRouter>
     )
 }

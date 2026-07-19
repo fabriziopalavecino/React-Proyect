@@ -20,6 +20,18 @@ function ItemListContainer() {
   }, [categoryName]);
 
 
+  if (items.length === 0) {
+    return (
+      <div className="flex flex-col p-4 gap-4">
+        <div className="skeleton h-150 w-full"></div>
+        <div className="skeleton h-150 w-full"></div>
+        <div className="skeleton h-150 w-full"></div>
+        <div className="skeleton h-150 w-full"></div>
+      </div>
+    )
+  }
+
+
 
   return (
     <ItemList items={items} />

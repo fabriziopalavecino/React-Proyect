@@ -1,5 +1,6 @@
 import { CartContext } from '../context/CartContext';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CartProvider({ children }) {
     const [cart, setCart] = useState([])
@@ -48,11 +49,13 @@ function CartProvider({ children }) {
         setCart(cart.filter((prod) => prod.id !== id));
     };
 
+    const clearCart = () => setCart([])
+
 
 
 
     return (
-        <CartContext.Provider value={{ cart, getProductsQuantity, addToCart, increaseQuantity, decreaseQuantity, removeProduct}}>
+        <CartContext.Provider value={{ cart, getProductsQuantity, addToCart, increaseQuantity, decreaseQuantity, removeProduct, clearCart}}>
             {children}
         </CartContext.Provider>
         

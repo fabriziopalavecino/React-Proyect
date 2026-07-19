@@ -8,7 +8,7 @@ function ItemDetail({ item }) {
             <p className="text-lg">{item?.description}</p>
             <p className="text-2xl font-bold">${item?.price}</p>
 
-            <ItemCount item={item} />
+            <Counter item={item} />
         </div>
     )
 }

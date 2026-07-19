@@ -11,6 +11,8 @@ function ItemDetailContainer() {
 
         getProductDetail(id, setItem)
     }, [id]);
+
+    
     return (
         <>
             <ItemDetail item={item} />
