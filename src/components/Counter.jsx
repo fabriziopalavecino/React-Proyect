@@ -17,13 +17,13 @@ function Counter({ item }) {
     const restar = () => {
         if (count > 0) {
             setCount(count - 1);
-            
+
         }
     };
 
     const handleAddToCart = () => {
         addToCart(item, count);
-         
+
     }
 
     return (
@@ -52,8 +52,12 @@ function Counter({ item }) {
             </div>
 
             <button
-                onClick={() => handleAddToCart()}
-                className="bg-blue-700 text-white px-4 py-2 rounded"
+                onClick={handleAddToCart}
+                disabled={count === 0}
+                className={`px-4 py-2 rounded text-white ${count === 0
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-blue-700 hover:bg-blue-800"
+                    }`}
             >
                 Agregar al carrito
             </button>

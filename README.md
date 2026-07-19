@@ -1,16 +1,85 @@
-# React + Vite
+# 🛒 React eCommerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📖 Descripción
 
-Currently, two official plugins are available:
+Este proyecto consiste en una aplicación desarrollada con **React** que simula un **eCommerce**. Permite a los usuarios navegar por un catálogo de productos, filtrarlos por categorías, visualizar los detalles de cada artículo y agregarlos al carrito de compras.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+La aplicación funciona como una **Single Page Application (SPA)**, por lo que la navegación entre las distintas secciones se realiza sin recargar la página, ofreciendo una experiencia de usuario más fluida.
 
-## React Compiler
+## 🚀 Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Visualización del catálogo de productos.
+- Filtrado de productos por categorías.
+- Vista detallada de cada producto.
+- Agregar productos al carrito de compras.
+- Modificar la cantidad de productos desde el carrito.
+- Eliminar productos del carrito.
+- Visualización del total de la compra.
+- Finalización de la compra mediante un formulario con datos obligatorios.
+- Al confirmar la compra, la orden se almacena en **Firebase Firestore**.
+- Navegación SPA utilizando **React Router**.
 
-## Expanding the ESLint configuration
+## 🛠️ Tecnologías utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- React Router DOM
+- Firebase (Firestore)
+- Tailwind CSS
+- DaisyUI
+
+## 📦 Dependencias
+
+- react
+- react-router-dom
+- firebase
+- tailwindcss
+- daisyui
+
+## ⚙️ Instalación
+
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/tu-usuario/tu-repositorio.git
+```
+
+2. Acceder a la carpeta del proyecto:
+
+```bash
+cd tu-repositorio
+```
+
+3. Instalar las dependencias:
+
+```bash
+npm install
+```
+
+4. Ejecutar el proyecto:
+
+```bash
+npm run dev
+```
+
+La aplicación estará disponible en:
+
+```
+http://localhost:5173
+```
+
+## 📂 Funcionalidad del carrito
+
+Desde el ícono del carrito ubicado en la barra de navegación es posible:
+
+- Visualizar los productos agregados.
+- Incrementar o disminuir la cantidad de cada producto.
+- Eliminar productos del carrito.
+- Acceder a la pantalla de checkout.
+
+En el **Checkout**, el usuario deberá completar los datos solicitados para generar la compra. Una vez confirmada, la orden se almacena en **Firebase Firestore**, generando el registro correspondiente.
+
+## 👨‍💻 Autor
+
+**Fabrizio Alejo Palavecino**
+
+📧 fabriziopalavecino@gmail.com

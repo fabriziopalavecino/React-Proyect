@@ -15,6 +15,18 @@ function CartContainer() {
         removeProduct
     } = useContext(CartContext);
 
+    if (cart.length === 0) {
+        return (
+            <div className="flex flex-col rounded-box shadow-md m-4 border border-gray-300 p-4 gap-10">
+                <h2>Tu carrito está vacio</h2>
+                <button className="flex justify-center border max-w-120 rounded bg-red"
+                onClick={() => navigate("/")}>
+                    Ver productos
+                </button>
+            </div>
+        )
+    }
+
     return (
         <div>
             <ul className="list bg-base-100 rounded-box shadow-md m-4 border border-gray-300 p-4">
