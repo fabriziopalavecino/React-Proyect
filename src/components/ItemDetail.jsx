@@ -1,4 +1,4 @@
-import Counter from "./Counter";
+import Counter from "./ItemCount";
 
 function ItemDetail({ item }) {
     return (
@@ -8,7 +8,7 @@ function ItemDetail({ item }) {
             <p className="text-lg">{item?.description}</p>
             <p className="text-2xl font-bold">${item?.price}</p>
 
-            <Counter item={item} />
+            <ItemCount item={item} />
         </div>
     )
 }
